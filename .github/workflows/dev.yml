@@ -22,4 +22,4 @@ jobs:
         aws-region: ap-south-1
         
     - name: Sync changes to s3
-      run: aws s3 sync ./ ${{vars.DEV_S3_BUCKET}} --delete --exclude '.git/*'
+      run: aws s3 sync ./ ${{vars.DEV_S3_BUCKET}} --delete --exclude '.git/*' --exclude '.github/*'
