@@ -11,6 +11,7 @@ jobs:
     environment: dev
     env:
       S3_BUCKET_DATA: ${{vars.S3_BUCKET_DATA}}
+      RANDOM: ${{vars.RANDOM}}
     
     steps:
     - name: checkout
