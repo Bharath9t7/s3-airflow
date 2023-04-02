@@ -35,7 +35,7 @@ jobs:
          chmod +x ./plugins/var.sh
          ./plugins/var.sh
          echo $S3_BUCKET_DATA
-         echo "$RANDOM"
+         echo "$RANDOM1"
       shell: bash
       
     - name: Configure AWS credentials
