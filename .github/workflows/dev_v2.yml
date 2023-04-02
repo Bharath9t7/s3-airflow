@@ -33,7 +33,8 @@ jobs:
       run: |
          chmod +x ./plugins/var.sh
          ./plugins/var.sh
-         echo "$s3_bucket_data"
+         echo $S3_BUCKET_DATA
+         echo "hi"
       shell: bash
       
     - name: Configure AWS credentials
