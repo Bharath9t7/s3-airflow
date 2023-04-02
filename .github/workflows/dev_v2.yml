@@ -18,8 +18,9 @@ jobs:
 
     - name: Set Airflow Variable
       run: |
-          chmod +x ./plugins/var.sh
-          ./plugins/var.sh
+         chmod +x ./plugins/var.sh
+         ./plugins/var.sh
+      shell: bash
       
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
