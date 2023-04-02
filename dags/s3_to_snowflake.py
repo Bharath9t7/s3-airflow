@@ -1,3 +1,5 @@
+#push data from s3 to snowflake database
+
 from airflow import DAG, Variable
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
