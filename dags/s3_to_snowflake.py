@@ -14,6 +14,7 @@ import requests
 S3_CONN_ID = 's3_conn'
 # BUCKET = 'api-data-snf'
 BUCKET = Variable.get('s3_bucket_data')
+RANDOM = Variable.get('random')
 
 def upload_to_s3(endpoint, date):
     s3_hook = S3Hook(aws_conn_id=S3_CONN_ID)
