@@ -11,7 +11,7 @@ jobs:
     environment: dev
     env:
       S3_BUCKET_DATA: ${{vars.S3_BUCKET_DATA}}
-      RANDOM1: ${{vars.RANDOM1}}
+      test_var: ${{vars.TEST_VARIABLE}}
     
     steps:
     - name: checkout
@@ -35,7 +35,7 @@ jobs:
          chmod +x ./plugins/var.sh
          ./plugins/var.sh
          echo $S3_BUCKET_DATA
-         echo "$RANDOM1"
+         echo "$var_test"
       shell: bash
       
     - name: Configure AWS credentials
