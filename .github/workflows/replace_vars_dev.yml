@@ -16,4 +16,4 @@ jobs:
       run: |
         sed -e '/s/rndc-airflow-poc/${{vars.S3_BUCKET_DATA}}/' \
             -e '/s/db_raw_poc/${{vars.DB_NAME}}/' \
-            ./dags/config/config.json > $HOME/dags/config/config.json
+            ./dags/config/config.json > ./dags/config/config.json
