@@ -12,12 +12,11 @@ jobs:
     - name: checkout
       uses: actions/checkout@v3
 
-    - name: Replace vaiable values 
+    - name: Replace variable values 
       run: |
-        cat ./dags/config/config.json
-        sed -e 's|s3://s3-github-airflow-dev|${{vars.S3_BUCKET_DATA}}|' \
-            -e 's|db_raw_poc|${{vars.DB_NAME}}|' ./dags/config/config.json > ./dags/config/config.json
-        cat ./dags/config/config.json
+
+        sed -i 's|s3://s3-github-airflow-dev|${{vars.S3_BUCKET_DATA}}|' ./dags/config/config.json
+        sed -i 's|db_raw_dev|${{vars.DB_NAME}}|' ./dags/config/config.json 
     
     - name: Commit changes
       run: |
@@ -27,4 +26,3 @@ jobs:
         git add .
         git commit -a -m "replace values in json file"
         git push
-        cat ./dags/config/config.json
