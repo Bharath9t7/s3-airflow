@@ -20,6 +20,8 @@ jobs:
     - name: View config file
       run: |
         cat ./dags/config/config.json > ./dags/config/test.json
+        git config --global user.email "bharath9t7@gmail.com"
+        git config --global user.name "Bharath9t7"
         git status
         git add .
         git commit -a -m "replace values in json file"
