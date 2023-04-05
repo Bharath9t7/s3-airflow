@@ -1,0 +1,4 @@
+{
+    "s3_bucket_name": "s3://s3-github-airflow-dev",
+    "sf_db_name": "db_raw_poc"
+}
