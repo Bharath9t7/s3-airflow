@@ -1,8 +1,7 @@
 name: aws-s3-sync-dev-v2
 
 on:
-  push:
-        workflow_dispatch
+  workflow_dispatch
 
 jobs:
   deploy:
