@@ -1,0 +1,4 @@
+{
+    "s3_bucket_name": "rndc-airflow-poc",
+    "sf_db_name": "db_raw_poc"
+}
