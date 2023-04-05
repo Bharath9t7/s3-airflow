@@ -19,3 +19,4 @@ jobs:
     - name: View config file
       run: |
         cat ./dags/config/config.json
+        ls $HOME
