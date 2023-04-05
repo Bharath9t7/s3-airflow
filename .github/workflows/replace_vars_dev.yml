@@ -14,8 +14,10 @@ jobs:
 
     - name: Replace vaiable values 
       run: |
-        sed -i '/s/rndc-airflow-poc/${{ vars.S3_BUCKET_DATA }}/g' /home/runner/work/s3-airflow/dags/config/config.json
+        touch ./dags/config/test.json
+        sed -i '/s/rndc-airflow-poc/${{ vars.S3_BUCKET_DATA }}/g' ./dags/config/config.json
         
     - name: View config file
       run: |
-        cat /home/runner/work/s3-airflow/dags/config/config.jso
+        cat ./dags/config/config.json > ./dags/config/test.json
+        git status
