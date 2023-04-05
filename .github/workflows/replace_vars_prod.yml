@@ -14,10 +14,11 @@ jobs:
 
     - name: Replace variable values 
       run: |
+
         sed -i 's|s3://s3-github-airflow-dev|${{vars.S3_BUCKET_DATA}}|' ./dags/config/config.json
         sed -i 's|db_raw_dev|${{vars.DB_NAME}}|' ./dags/config/config.json 
-        
-    - name: View config file
+    
+    - name: Commit changes
       run: |
         git config --global user.email "bharath9t7@gmail.com"
         git config --global user.name "Bharath9t7"
