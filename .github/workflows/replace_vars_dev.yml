@@ -14,7 +14,12 @@ jobs:
 
     - name: Replace vaiable values 
       run: |
-        sed "/s/rndc-airflow-poc/${{vars.S3_BUCKET_DATA}}/" ./dags/config/config.json > ./dags/config/config.json
+        sed -i "/s/rndc-airflow-poc/${{vars.S3_BUCKET_DATA}}/" ./dags/config/config.json
+        
+        git config --global user.email "bharath9t7@gmail.com"
+        git config --global user.name "bharath9t7"
+        git commit -am "Replace values in config.json"
+        git push
     
     - name: View config file
       run: |
