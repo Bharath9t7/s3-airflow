@@ -15,9 +15,12 @@ jobs:
     - name: Replace vaiable values 
       run: |
         touch ./dags/config/test.json
-        sed -i '/s/rndc-airflow-poc/${{ vars.S3_BUCKET_DATA }}/g' ./dags/config/config.json
+        sed '/s/rndc-airflow-poc/${{ vars.S3_BUCKET_DATA }}/g' ./dags/config/config.json > ./dags/config/test.json
         
     - name: View config file
       run: |
         cat ./dags/config/config.json > ./dags/config/test.json
         git status
+        git add .
+        git commit -a -m "replace values in json file"
+        git push
