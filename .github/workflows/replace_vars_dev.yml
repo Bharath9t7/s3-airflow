@@ -18,5 +18,12 @@ jobs:
         sed -i 's|rndc-airflow-poc|${{ vars.S3_BUCKET_DATA }}|' ./dags/config/config.json
         sed -i 's|db_raw_poc|${{ vars.DB_NAME }}|' ./dags/config/config.json
         
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-south-1
+        
     - name: Sync changes to s3
       run: aws s3 sync ./ ${{vars.DEV_S3_BUCKET}} --delete --exclude '.git/*' --exclude '.github/*'
