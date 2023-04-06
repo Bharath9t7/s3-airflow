@@ -1,0 +1,37 @@
+name: replace_vars_dev
+
+on:
+    workflow_dispatch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+    
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+
+    - name: Replace vaiable values
+      id: replace_values
+      run: |
+        sed -i 's|airflow-poc|${{ vars.S3_BUCKET_DATA }}|' ./dags/config/config.json
+        sed -i 's|db_raw_poc|${{ vars.DB_NAME }}|' ./dags/config/config.json
+        
+        if git diff --quiet; then
+            echo "No changes in config.json file"
+            echo "changed=false" >> $GITHUB_ENV
+        else
+            echo "Changes made to config.json file"
+            echo "changed=true" >> $GITHUB_ENV
+        fi
+        
+    - name: Commit changes
+      if: env.changed == 'true'
+      run: |
+        git config --global user.email “bharath@gmail.com"
+        git config --global user.name “bharath"
+        git status
+        git add .
+        git commit -a -m "replace values in json file"
+        git push
