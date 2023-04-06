@@ -1,4 +1,4 @@
 {
-    "s3_bucket_name": "s3://api-data-snf-prod",
-    "sf_db_name": "db_raw_prod"
+    "s3_bucket_name": "rndc-airflow-poc",
+    "sf_db_name": "db_raw_poc"
 }
