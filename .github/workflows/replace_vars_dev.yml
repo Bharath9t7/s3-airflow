@@ -18,20 +18,5 @@ jobs:
         sed -i 's|rndc-airflow-poc|${{ vars.S3_BUCKET_DATA }}|' ./dags/config/config.json
         sed -i 's|db_raw_poc|${{ vars.DB_NAME }}|' ./dags/config/config.json
         
-        if git diff --quiet; then
-            echo "No changes in config.json file"
-            echo "changed=false" >> $GITHUB_ENV
-        else
-            echo "Changes made to config.json file"
-            echo "changed=true" >> $GITHUB_ENV
-        fi
-        
-    - name: Commit changes
-      if: env.changed == 'true'
-      run: |
-        git config --global user.email "bharath9t7@gmail.com"
-        git config --global user.name "Bharath9t7"
-        git status
-        git add .
-        git commit -a -m "replace values in json file"
-        git push
+    - name: Sync changes to s3
+      run: aws s3 sync ./ ${{vars.DEV_S3_BUCKET}} --delete --exclude '.git/*' --exclude '.github/*'
