@@ -20,7 +20,7 @@ jobs:
         
         echo ::set-output name=changed::$(git diff --quiet || echo "true")
         
-    - name: View config file
+    - name: Commit changes
       if: steps.replace_values.outputs.changed == 'true'
       run: |
         git config --global user.email "bharath9t7@gmail.com"
