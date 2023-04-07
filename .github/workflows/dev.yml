@@ -4,7 +4,7 @@ on:
     workflow_dispatch
 
 jobs:
-  s3-sync:
+  deploy:
     name: s3-sync-dev
     
     runs-on: ubuntu-latest
