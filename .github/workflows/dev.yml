@@ -4,7 +4,7 @@ on:
     workflow_dispatch
 
 jobs:
-  deploy:
+  s3-sync:
     runs-on: ubuntu-latest
     environment: dev
     
