@@ -5,6 +5,8 @@ on:
 
 jobs:
   s3-sync:
+    name: s3-sync-dev
+    
     runs-on: ubuntu-latest
     environment: dev
     
