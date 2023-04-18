@@ -5,6 +5,8 @@ on:
 
 jobs:
   deploy:
+    name: s3-sync-dev
+    
     runs-on: ubuntu-latest
     environment: dev
     
@@ -20,4 +22,4 @@ jobs:
         aws-region: ap-south-1
         
     - name: Sync changes to s3
-      run: aws s3 sync ./ ${{vars.DEV_S3_BUCKET}} --delete --exclude '.git/*' --exclude '.github/*' --size-only
+      run: aws s3 sync ./ ${{vars.DEV_S3_BUCKET}} --delete --exclude '.git/*' --exclude '.github/*' --exclude '.gitignore'
