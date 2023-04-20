@@ -1,0 +1,26 @@
+name: Python syntax and formatting check
+
+on: 
+  workflow_dispatch
+
+jobs:
+  check-syntax:
+    name: Check syntax and formatting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: pip install flake8 black
+
+      - name: Check syntax
+        run: |
+          flake8 .
+          black --check .
