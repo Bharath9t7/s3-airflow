@@ -1,4 +1,4 @@
-name: CI Test Dev
+name: CI Test Sandbox
 
 on: 
   push:
