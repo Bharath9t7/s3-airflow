@@ -1,18 +1,24 @@
 name: aws-s3-sync-dev
 
 on:
-    workflow_dispatch
+  workflow_run:
+    workflows: [CI Tesr Dev]
+    types: [completed]
+    branches: [dev]
 
 jobs:
   deploy:
     name: s3-sync-dev
     
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     environment: dev
     
     steps:
     - name: checkout
       uses: actions/checkout@v3
+      with:
+        ref: dev
       
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v2
