@@ -1,4 +1,4 @@
-name: aws-s3-sync-dev-v2
+name: dev-v2
 
 on:
     workflow_dispatch
