@@ -1,16 +1,20 @@
-name: Python syntax and formatting check
+name: CI Test Dev
 
 on: 
-  workflow_dispatch
+  push:
+    branches: [dev]
 
 jobs:
-  check-syntax:
-    name: Check syntax and formatting
+  ci-test:
+    name: ci_test_dev
     runs-on: ubuntu-latest
+    environment: dev
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          ref: dev
 
       - name: Set up Python
         uses: actions/setup-python@v4
