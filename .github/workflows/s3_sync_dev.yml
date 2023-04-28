@@ -4,7 +4,11 @@ on:
   workflow_run:
     workflows: [CI Test Dev]
     types: [completed]
-    branches: [dev]
+    branches:
+      - dev
+      
+env:
+  GITHUB_REF: "refs/heads/dev"
 
 jobs:
   deploy:
