@@ -1,11 +1,8 @@
 name: aws-s3-sync-prod
 
 on:
-  pull_request:
-    types:
-      - closed
-    branches:
-      - main
+  push:
+    branches: main
 
 jobs:
   deploy:
