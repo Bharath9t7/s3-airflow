@@ -30,5 +30,15 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-south-1
         
-    - name: Sync changes to s3
-      run: aws s3 sync ./dags ${{vars.DEV_S3_BUCKET}} --delete
+#     - name: Sync changes to s3
+#       run: aws s3 sync ./dags ${{vars.DEV_S3_BUCKET}} --delete
+
+    - name: Find changed files
+      id: find-changes
+      run: echo "::set-output name=files::$(git diff --name-only HEAD~1)"
+      
+    - name: Sync changed files to S3 bucket
+      run: |
+        for file in ${{ steps.find-changes.outputs.files }}; do
+            aws s3 cp "$file" "s3://my-s3-bucket/$file"
+        done
