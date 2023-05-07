@@ -35,8 +35,23 @@ jobs:
 
     - name: Find changed files
       id: find-changes
-      run: echo "::set-output name=files::$(git diff --name-only HEAD~1)"
-      
+      run: |
+        if [ $(git rev-parse --verify HEAD~1) ]; then
+          echo $(git diff --name-only HEAD~1) > changed_files.txt
+        else
+          git ls-tree --name-only -r HEAD > changed_files.txt
+        fi
+          # Use the new outputs context to set the value of the files output
+          echo "::set-output name=files::$(cat changed_files.txt)"
+        # Use the new outputs context to declare the files output
+        # This allows other steps to access the value of the files output
+        # without having to parse the output of the previous step
+        # The value of the files output will be a space-separated list of file names
+        # e.g. "file1.txt file2.txt file3.txt"
+        # The output will be available to other steps as "${{ steps.find-changes.outputs.files }}"
+        outputs:
+          files: ${{ steps.find-changes.outputs.files }}
+          
     - name: Sync changed files to S3 bucket
       run: |
         for file in ${{ steps.find-changes.outputs.files }}; do
