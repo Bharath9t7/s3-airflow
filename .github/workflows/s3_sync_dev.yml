@@ -40,5 +40,5 @@ jobs:
     - name: Sync changed files to S3 bucket
       run: |
         for file in ${{ steps.find-changes.outputs.files }}; do
-            aws s3 cp "$file" "s3://my-s3-bucket/$file"
+            aws s3 cp "$file" "s${{vars.DEV_S3_BUCKET}}/$file"
         done
